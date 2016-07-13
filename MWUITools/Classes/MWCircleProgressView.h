@@ -10,4 +10,12 @@
 
 @interface MWCircleProgressView : UIView
 
+@property (nonatomic, retain) UIColor *bgColor; //default clearColor
+@property (nonatomic, retain) UIColor *strokeColor; // default WhiteColor
+@property (nonatomic, assign) CGFloat coverWidth; //default 5
+
+- (void)updateProgress:(CGFloat)progress;
+
+
+
 @end
