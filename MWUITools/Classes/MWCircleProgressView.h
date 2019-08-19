@@ -16,6 +16,4 @@
 
 - (void)updateProgress:(CGFloat)progress;
 
-
-
 @end

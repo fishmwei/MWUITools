@@ -15,17 +15,14 @@
 @property (nonatomic, retain) CAShapeLayer *frontLayer; //progress layer
 @property (nonatomic, assign) CGFloat radius;
 
-
-
 @end
 
 @implementation MWCircleProgressView
 
--(id)initWithFrame:(CGRect)frame
-{
+-(id)initWithFrame:(CGRect)frame {
+    
     self = [super initWithFrame:frame];
-    if (self)
-    {
+    if (self) {
         CGFloat width = CGRectGetWidth(frame);
         CGFloat height = CGRectGetHeight(frame);
         
@@ -40,15 +37,14 @@
     return self;
 }
 
--(UIBezierPath *)generatePath
-{
+-(UIBezierPath *)generatePath {
+    
     UIBezierPath *apath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(_radius, _radius) radius:_radius startAngle:M_PI*3/2 endAngle:M_PI*7/2 clockwise:YES];
     
     return apath;
 }
 
--(void)initUI
-{
+-(void)initUI {
     UIBezierPath *circlePath  = [self generatePath];
     
     _bgLayer = [[CAShapeLayer alloc] init];
@@ -77,20 +73,25 @@
 }
 
 - (void)setBgColor:(UIColor *)bgColor {
+    
     if (_bgLayer) {
         _bgLayer.strokeColor = bgColor.CGColor;
     }
+    
     _bgColor = bgColor;
 }
 
 - (void)setStrokeColor:(UIColor *)strokeColor {
+    
     if (_frontLayer) {
         _frontLayer.strokeColor = strokeColor.CGColor;
     }
+    
     _strokeColor = strokeColor;
 }
 
 - (void)setCoverWidth:(CGFloat)coverWidth {
+    
     if (_frontLayer) {
         _frontLayer.lineWidth = coverWidth;
     }

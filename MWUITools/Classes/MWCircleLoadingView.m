@@ -21,12 +21,9 @@
 
 @implementation MWCircleLoadingView
 
-
+@synthesize animating=_animating;
 
 #define kAngelWithDegree(degree) (2 * M_PI / 360 * degree)
-
-
-
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -54,7 +51,7 @@
 //        [self.layer removeAllAnimations];
     }
 
-    _isAnimating = YES;
+    _animating = YES;
     
     self.angel = kAngelWithDegree(50);
     [self startRotateAnimation];
@@ -62,7 +59,7 @@
 }
 
 - (void)stopAnimation {
-    _isAnimating = NO;
+    _animating = NO;
     [self stopRotateAnimation];
     return;
 }
@@ -70,8 +67,7 @@
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    if (_isAnimating)
-    {
+    if (self.isAnimating) {
         //变慢点,每秒钟定时重启动画
         [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(startRotateAnimation) userInfo:nil repeats:NO];
     }
@@ -79,7 +75,7 @@
 
 - (void)startRotateAnimation {
     
-    if (!_isAnimating) {
+    if (!self.isAnimating) {
         return;
     }
     
@@ -96,8 +92,7 @@
     
     [UIView animateWithDuration:0.3f animations:^{
         self.alpha = 1.0;
-    } completion:^(BOOL finished)
-     {
+    } completion:^(BOOL finished) {
 
      }];
     
@@ -106,7 +101,7 @@
 }
 
 - (void)stopRotateAnimation {
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.3f animations:^ {
         self.alpha = 0;
     } completion:^(BOOL finished) {
         _angel = 0;
@@ -125,6 +120,7 @@
     if (self.lineWidth) {
         lineWidth = self.lineWidth;
     }
+    
     if (self.lineColor) {
         lineColor = self.lineColor;
     }
@@ -139,9 +135,13 @@
                     kAngelWithDegree(120) + kAngelWithDegree(330) * self.angel,
                     0);
     CGContextStrokePath(context);
+    
     return;
 }
 
+- (BOOL)isAnimating {
+    return _animating;
+}
 
 
 /*

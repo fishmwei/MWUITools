@@ -20,7 +20,7 @@
 
 // 是否添加动画
 // default is YES
-@property (nonatomic, readonly) BOOL isAnimating;
+@property (nonatomic, readonly, getter=isAnimating) BOOL animating;
 
 // 开始、结束动画效果
 - (void)startAnimation;
